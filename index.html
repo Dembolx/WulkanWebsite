@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volcano Simulation Pro - Neonowa Erupcja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="night-sky">
+        <div class="stars"></div>
+        <div class="volcano-container">
+            <div class="glow"></div>
+            <div class="volcano">
+                <div class="crater"></div>
+                <div class="lava-pool"></div>
+            </div>
+            <div class="ground"></div>
+        </div>
+        <div class="meteors-container"></div>
+        <div class="particles-container"></div>
+    </div>
+
+    <div class="control-panel">
+        <h2>🌋 VOLCANO SIM PRO</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-label">METEORY AKTYWNE</div>
+                <div class="stat-value" id="meteor-count">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">CZĄSTKI AKTYWNE</div>
+                <div class="stat-value" id="particle-count">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">TEMPERATURA</div>
+                <div class="stat-value" id="temperature">2847°C</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">AKTYWNOŚĆ</div>
+                <div class="stat-value" id="activity">WYSOKA</div>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <label>Intensywność Erupcji</label>
+                <input type="range" class="slider" id="intensity" min="0.1" max="3" step="0.1" value="1">
+            </div>
+            
+            <div class="control-group">
+                <label>Częstotliwość Meteorów</label>
+                <input type="range" class="slider" id="meteor-rate" min="50" max="500" step="50" value="200">
+            </div>
+            
+            <div class="control-group">
+                <label>Rozmiar Cząstek</label>
+                <input type="range" class="slider" id="particle-size" min="0.5" max="2" step="0.1" value="1">
+            </div>
+            
+            <div class="control-group">
+                <label>Grawitacja</label>
+                <input type="range" class="slider" id="gravity" min="0.1" max="0.8" step="0.1" value="0.3">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="toggle-btn active" id="auto-clean">Auto Czyszczenie</button>
+            <button class="toggle-btn" id="pause-btn">Pauza</button>
+            <button class="toggle-btn" id="reset-btn">Reset</button>
+        </div>
+    </div>
+
+    <div class="fps-counter">
+        <div class="fps-value" id="fps">60</div>
+        <div style="font-size: 12px;">FPS</div>
+        <div class="performance-indicator">
+            <div class="performance-bar" id="perf-bar"></div>
+        </div>
+    </div>
+
+    <div class="watermark">Volcano Simulation Pro v2.1</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: #000;
+    font-family: 'Courier New', monospace;
+    user-select: none;
+}
+
+.night-sky {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at bottom, #200a0a 0%, #000 100%);
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 10% 20%, rgba(255, 50, 50, 0.8), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90% 30%, rgba(255, 50, 50, 0.8), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50% 80%, rgba(255, 50, 50, 0.8), rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+.volcano-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 50%;
+}
+
+.volcano {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(to right, #3a1010, #5a1919, #3a1010);
+    clip-path: polygon(0% 100%, 15% 30%, 30% 50%, 50% 30%, 70% 50%, 85% 30%, 100% 100%);
+    z-index: 2;
+    box-shadow: inset -20px 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.crater {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1a0505;
+    z-index: 3;
+    box-shadow: inset 10px 10px 40px rgba(0, 0, 0, 0.9);
+}
+
+.lava-pool {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(to top, #ff0033, #ff0066);
+    border-radius: 50%;
+    z-index: 4;
+    animation: lava-glow 1s infinite alternate, lava-bubble 3s infinite;
+    box-shadow: 0 0 30px 10px rgba(255, 0, 80, 0.6);
+    filter: blur(1px);
+}
+
+@keyframes lava-glow {
+    0% { box-shadow: 0 0 20px 5px rgba(255, 0, 80, 0.6); opacity: 0.9; }
+    100% { box-shadow: 0 0 40px 15px rgba(255, 0, 80, 0.8), 0 0 60px 25px rgba(255, 0, 40, 0.4); opacity: 1; }
+}
+
+@keyframes lava-bubble {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1, 0.9); }
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, #1a0808, #2a0b0b, #1a0808);
+    z-index: 1;
+    box-shadow: 0 -10px 30px rgba(255, 0, 80, 0.3);
+}
+
+.meteor {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: linear-gradient(to right, var(--color1), var(--color2));
+    border-radius: 50% 50% 0 50%;
+    z-index: 5;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 0 6px var(--color1));
+    opacity: var(--opacity);
+    will-change: transform, opacity;
+}
+
+.particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 3px var(--color));
+    z-index: 4;
+    opacity: var(--opacity);
+    will-change: transform, opacity;
+}
+
+.glow {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: radial-gradient(ellipse at center, rgba(255, 0, 80, 0.4) 0%, rgba(255, 0, 80, 0) 70%);
+    z-index: 1;
+    animation: glow-pulse 2s infinite alternate;
+}
+
+@keyframes glow-pulse {
+    0% { opacity: 0.3; height: 100px; }
+    100% { opacity: 0.7; height: 150px; }
+}
+
+/* Panel kontrolny */
+.control-panel {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff0066;
+    border-radius: 10px;
+    padding: 20px;
+    color: #ff0066;
+    box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    min-width: 280px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.control-panel h2 {
+    color: #ff3366;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 10px #ff0066;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: rgba(255, 0, 102, 0.1);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 0, 102, 0.3);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #ff6699;
+    margin-bottom: 2px;
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff0066;
+}
+
+.controls-section {
+    margin-bottom: 15px;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 12px;
+    color: #ff6699;
+    margin-bottom: 5px;
+}
+
+.slider {
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: rgba(255, 0, 102, 0.2);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff0066;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff0066;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+}
+
+.toggle-btn {
+    background: rgba(255, 0, 102, 0.2);
+    border: 1px solid #ff0066;
+    color: #ff0066;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.3s;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 0, 102, 0.4);
+    box-shadow: 0 0 10px rgba(255, 0, 102, 0.3);
+}
+
+.toggle-btn.active {
+    background: #ff0066;
+    color: #000;
+}
+
+.fps-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff0066;
+    border-radius: 10px;
+    padding: 15px;
+    color: #ff0066;
+    box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    z-index: 1000;
+}
+
+.fps-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3366;
+    text-shadow: 0 0 10px #ff0066;
+}
+
+.performance-indicator {
+    margin-top: 10px;
+    height: 10px;
+    background: rgba(255, 0, 102, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.performance-bar {
+    height: 100%;
+    background: linear-gradient(to right, #00ff00, #ffff00, #ff0000);
+    transition: width 0.3s;
+    border-radius: 5px;
+}
+
+.watermark {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 0, 102, 0.6);
+    font-size: 12px;
+    z-index: 1000;
+}
