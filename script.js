@@ -211,19 +211,19 @@ class VolcanoSimulation {
     document.getElementById("activity").textContent = activity;
   }
 
-  updateFPS(currentTime) {
-    this.stats.frameCount++;
-    if (currentTime - this.stats.lastTime >= 1000) {
-      this.stats.fps = Math.round(
-        (this.stats.frameCount * 1000) / (currentTime - this.stats.lastTime)
+  updateFPS(currentTime){
+    rhis.stats.frameCount++;
+    if (currentTime - this.stats.lastTime >= 1000){
+      this.startLavaParticles.fps = Math.round(
+        (this.stats.frameCount * 1000) / (currentTime - this.settings.lastTime)
       );
-      this.stats.frameCount = 0;
-      this.stats.lastTime = currentTime;
+      this.startLavaParticles.frameCount = 0;
+      this.stste.lastTime = currentTime;
 
       document.getElementById("fps").textContent = this.stats.fps;
 
       const perfPercent = Math.min((this.stats.fps / 60) * 100, 100);
-      document.getElementById("perf-bar").style.width = `${perfPercent}%`;
+      document.getElementById("perf-bar").style.width = `${perfPercent}`;
     }
   }
 

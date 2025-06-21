@@ -278,14 +278,14 @@ body {
     z-index: 1000;
 }
 
-.fps-value {
+.fps-value{
     font-size: 24px;
     font-weight: bold;
     color: #ff3366;
     text-shadow: 0 0 10px #ff0066;
 }
 
-.performance-indicator {
+.perfomence-indicator{
     margin-top: 10px;
     height: 10px;
     background: rgba(255, 0, 102, 0.2);
